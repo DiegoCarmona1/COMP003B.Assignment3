@@ -53,7 +53,7 @@ namespace COMP003B.Assignment3.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, User users)
         {
-            if (id != User.Id)
+            if (id != users.Id)
             {
                 return NotFound();
             }
@@ -65,7 +65,7 @@ namespace COMP003B.Assignment3.Controllers
                 if (existingUser != null)
                 {
                     existingUser.Name = users.Name;
-                    existingUser.Email = users.Email;
+                    existingUser.Age = users.Age;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -75,7 +75,30 @@ namespace COMP003B.Assignment3.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var user = _users.FirstOrDefault(x => x.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var user = _users.FirstOrDefault(u => u.Id == id);
+
+            if (user != null)
+            {
+                _users.Remove(user);
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
