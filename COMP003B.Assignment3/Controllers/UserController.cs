@@ -3,7 +3,7 @@ using COMP003B.Assignment3.Models;
 
 namespace COMP003B.Assignment3.Controllers
 {
-    public class RegisterUser : Controller
+    public class UserController : Controller
     {
         private static List<User> _users = new List<User>();
         public IActionResult Index()
