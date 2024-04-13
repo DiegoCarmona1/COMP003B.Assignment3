@@ -13,5 +13,8 @@ namespace COMP003B.Assignment3.Models
         [Required]
         [Range(0,120)]
         public int Age { get; set; }
+        [Required]
+        [EmailAddress]
+        public string EmailAddress { get; set; }
     }
 }

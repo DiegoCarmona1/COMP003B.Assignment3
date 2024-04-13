@@ -3,7 +3,7 @@ using COMP003B.Assignment3.Models;
 
 namespace COMP003B.Assignment3.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private static List<User> _users = new List<User>();
         public IActionResult Index()
@@ -66,6 +66,7 @@ namespace COMP003B.Assignment3.Controllers
                 {
                     existingUser.Name = users.Name;
                     existingUser.Age = users.Age;
+                    existingUser.EmailAddress = users.EmailAddress;
                 }
                 return RedirectToAction(nameof(Index));
             }
